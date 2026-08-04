@@ -57,11 +57,13 @@ Use these files as contract examples. Do not copy their visual tokens, brand ass
 
 For visible UI changes:
 
-1. Use the project's required desktop viewport. If none exists, cover `1920x1080` and the narrowest width the feature claims to support.
-2. Capture a clean screenshot for visual review. Add an annotated screenshot when element references materially improve the evidence.
-3. Refresh the DOM snapshot after structural changes and never reuse stale element references.
-4. Check nonblank rendering, composition, sticky regions, long text, dynamic states, focus, accessible names, and reduced motion.
-5. Keep synthetic references, static code evidence, and real target-product runtime evidence clearly separated.
+1. Read [`references/runtime-evidence.md`](references/runtime-evidence.md) before using CDP, authenticated pages, or screenshots from a real product.
+2. Use `scripts/capture-runtime-evidence.mjs` when an existing browser or Electron renderer exposes a localhost CDP port. Keep its output outside the skill and outside public Git by default.
+3. Use the project's required desktop viewport. If none exists, cover `1920x1080` and the narrowest width the feature claims to support.
+4. Capture a clean screenshot for visual review and an annotated screenshot for mapping numbered labels to current element refs.
+5. Refresh the accessibility snapshot after structural changes and never reuse stale element refs.
+6. Check nonblank rendering, composition, sticky regions, long text, dynamic states, focus, accessible names, console output, page errors, and reduced motion.
+7. Keep synthetic references, static code evidence, and real target-product runtime evidence clearly separated. State exactly which expected states were absent.
 
 ## Delivery
 

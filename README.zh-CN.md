@@ -1,4 +1,4 @@
-<!-- Source: README.md SHA-256: 8a3f18c7f1511c006d127f455f7110a69a19f85f56ee9909f366f808f9d646bd -->
+<!-- Source: README.md SHA-256: 865acad5e0dddbc9a70fbbf95e4ee90dab98e1910e7ea3139eac53d8f9dc67b4 -->
 
 # Agent 产品 UI/UX Skill
 
@@ -35,11 +35,31 @@ npx skills update agent-product-ui-ux -g -y
 
 - [`SKILL.md`](skills/agent-product-ui-ux/SKILL.md)：触发条件、工作流和硬性交互契约。
 - [`interaction-guide.md`](skills/agent-product-ui-ux/references/interaction-guide.md)：按需加载的设计与验收指南。
+- [`runtime-evidence.md`](skills/agent-product-ui-ux/references/runtime-evidence.md)：证据分级、localhost CDP 边界和运行态 review 流程。
+- [`capture-runtime-evidence.mjs`](skills/agent-product-ui-ux/scripts/capture-runtime-evidence.mjs)：从已有浏览器或 Electron target 只读采集 clean/annotated 截图、可访问性、console 和 manifest。
 - [`reference-surface`](skills/agent-product-ui-ux/assets/reference-surface/)：无依赖的 synthetic 交互示例和 TypeScript 契约。
 - [`screenshots`](skills/agent-product-ui-ux/assets/screenshots/)：由 synthetic surface 生成的 clean 与 annotated 截图。
 - [`evals`](evals/README.md)：修改 Skill 时使用的小型行为评估协议。
 
 Skill 迁移的是状态、布局、滚动、焦点、可访问性和恢复契约。目标项目的真实设计系统、组件、代码和运行态优先。
+
+## 运行态证据
+
+当已获授权的浏览器或 Electron renderer 已暴露 localhost CDP 端口时，可以在不导航、不执行产品操作的情况下采集当前页面：
+
+```bash
+node skills/agent-product-ui-ux/scripts/capture-runtime-evidence.mjs \
+  --cdp 9222 \
+  --out .tmp/ui-evidence \
+  --name thread-working \
+  --evidence-class real-runtime \
+  --viewport 1920x1080 \
+  --expect-url /threads/
+```
+
+脚本只修改 renderer viewport；不会导航、点击、输入、提交、审批、认证或关闭宿主浏览器。输出包含 clean 与 annotated 截图、可访问性快照、运行态 metadata、console、页面错误和 SHA-256 manifest。必填的证据类别可以避免把运行中的 fixture 或重建页面误标为目标产品真实运行态。
+
+运行态证据包可能包含私有页面文本、URL 和图片。输出必须放在已安装 Skill 与公开 Git 历史之外。发布任何派生证据前，应同时审查文本、图片像素、OCR 结果、metadata 和 URL。产品特定的认证、profile、会话和应用启动自动化不属于这个公开仓库。
 
 ## 开发
 
@@ -50,7 +70,7 @@ npm ci
 npm test
 ```
 
-校验覆盖 metadata、链接和锚点、公开数据卫生、版本一致性、TypeScript 示例、JavaScript 语法、截图尺寸、eval fixtures、翻译新鲜度，以及 Skills CLI 真实安装结果与 canonical Skill 目录的逐文件一致性。
+校验覆盖 metadata、链接和锚点、公开数据卫生、版本一致性、TypeScript 示例、JavaScript 与采集脚本语法、截图尺寸、eval fixtures、翻译新鲜度，以及 Skills CLI 真实安装结果与 canonical Skill 目录的逐文件一致性。
 
 改动要求见 [CONTRIBUTING.md](CONTRIBUTING.md)，版本记录见 [CHANGELOG.md](CHANGELOG.md)。
 

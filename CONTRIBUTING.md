@@ -20,6 +20,8 @@ For behavioral guidance changes, also run the relevant cases in `evals/cases.jso
 
 For visible reference-surface changes, attach a real browser screenshot at `1920x1080` and confirm keyboard behavior. Regenerate clean and annotated captures together.
 
+For claims about a target product's runtime, use the bundled localhost CDP capture workflow when authorized. Keep raw evidence outside this repository, pair clean and annotated screenshots with accessibility and console output, and label unavailable states as unverified. Never substitute synthetic or source-only evidence for a real runtime observation.
+
 ## Pull requests
 
 Explain the problem, alternatives considered, scope deliberately excluded, validation commands, behavior-evaluation result, and public-data review. Release notes should describe user-visible behavior rather than internal file movement.

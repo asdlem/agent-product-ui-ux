@@ -136,6 +136,11 @@ for (const relativeConfig of [
 const javascript = join(skillDir, "assets", "reference-surface", "app.js");
 const jsCheck = spawnSync(process.execPath, ["--check", javascript], { encoding: "utf8" });
 check(jsCheck.status === 0, `app.js syntax failed\n${jsCheck.stderr}`);
+const captureScript = join(skillDir, "scripts", "capture-runtime-evidence.mjs");
+const captureCheck = spawnSync(process.execPath, ["--check", captureScript], { encoding: "utf8" });
+check(captureCheck.status === 0, `capture-runtime-evidence.mjs syntax failed\n${captureCheck.stderr}`);
+const captureHelp = spawnSync(process.execPath, [captureScript, "--help"], { encoding: "utf8" });
+check(captureHelp.status === 0 && captureHelp.stdout.includes("--cdp"), `capture-runtime-evidence.mjs help failed\n${captureHelp.stderr}`);
 
 const installRoot = await mkdtemp(join(tmpdir(), "agent-product-ui-ux-install-"));
 const gitInit = spawnSync("git", ["init", "-b", "main"], { cwd: installRoot, encoding: "utf8" });
