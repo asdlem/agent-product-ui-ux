@@ -1,0 +1,26 @@
+name: Feature proposal
+description: Propose a focused addition to the skill
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: user-problem
+    attributes:
+      label: Agent-product problem
+      description: What recurring interface problem is not covered today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Smallest proposed change
+      description: Explain the contract or reference change and alternatives you would omit.
+    validations:
+      required: true
+  - type: textarea
+    id: evaluation
+    attributes:
+      label: Evaluation
+      description: How would a baseline and skill-enabled behavior test distinguish success?
+    validations:
+      required: true

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Product UI/UX"
+  short_description: "Agent state, tool workspace, and interaction guidance"
+  default_prompt: "Use $agent-product-ui-ux to design and verify this agent-facing frontend workflow."

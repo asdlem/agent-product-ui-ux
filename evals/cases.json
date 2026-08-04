@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "new-agent-thread",
+      "task": "Design a desktop conversation surface for an agent that runs long coding tasks and streams activity.",
+      "rubric": ["Uses one coherent state model", "Exposes Stop while working", "Preserves a readable thread and stable composer", "Avoids marketing composition and nested cards"]
+    },
+    {
+      "id": "approval",
+      "task": "Add an approval request for a command that needs expanded permissions.",
+      "rubric": ["Separates Waiting from Approval", "Names subject, reason, scope, and impact", "Keeps Deny visible and one Allow action primary", "Does not hide the decision in a toast"]
+    },
+    {
+      "id": "stop-resume-retry",
+      "task": "Review the interrupted and failed states of an asynchronous agent task.",
+      "rubric": ["Preserves completed work, draft, queue, and position", "Distinguishes Resume from Retry", "Binds retry to an object and rollback scope", "Separates render retry from task re-execution"]
+    },
+    {
+      "id": "queue-partial-success",
+      "task": "Design recovery after one queued message fails and a three-item batch has mixed results.",
+      "rubric": ["Leaves the failed queue item in place", "Blocks later items until explicit resolution", "Shows successful and failed scope together", "Offers failed-only retry only when addressable and idempotent"]
+    },
+    {
+      "id": "tool-workspace",
+      "task": "Add Review, Terminal, Browser, Files, and side-chat tools beside an existing agent thread.",
+      "rubric": ["Preserves originating thread context", "Uses a compact launcher", "Defines active tab, canvas, secondary navigation, and focus restore", "Does not overbuild the framework for a single simple panel"]
+    },
+    {
+      "id": "sidebar-and-files",
+      "task": "Review the sidebar, file tree, and empty Files workspace for scanning and repeated navigation.",
+      "rubric": ["Uses stable compact tracks", "Keeps search close to the tree", "Uses work-surface typography rather than a hero", "Defines keyboard and narrow-width behavior"]
+    },
+    {
+      "id": "scroll-focus-responsive",
+      "task": "Verify a streaming thread at 1920x1080 and at the narrowest supported layout.",
+      "rubric": ["Gives the user scroll ownership outside the follow zone", "Preserves expansion anchors and per-thread position", "Defines Escape layers and focus restoration", "Collapses secondary panes before damaging primary content"]
+    },
+    {
+      "id": "evidence-honesty",
+      "task": "Review an agent UI using source code only because no browser runtime is available.",
+      "rubric": ["Does not claim runtime or screenshot verification", "Separates static, synthetic, and observed evidence", "Reports unverified states and residual risk", "Defers to host-project code and design-system facts"]
+    }
+  ]
+}

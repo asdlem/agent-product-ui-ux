@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Codex-informed agent interaction reference</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-view="working" data-recovery-state="queue" data-tool-state="launcher">
+    <div class="evidence-banner" role="note">
+      <strong>Codex-informed agent interaction reference</strong>
+      <span>Synthetic reference surface</span>
+      <span class="evidence-meta">Desktop reference · 1920 × 1080</span>
+    </div>
+
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Reference navigation">
+        <div class="window-controls">
+          <button class="icon-button" type="button" aria-label="Hide sidebar" title="Hide sidebar">◧</button>
+          <div class="history-controls" aria-label="History controls">
+            <button class="icon-button" type="button" aria-label="Back" title="Back">←</button>
+            <button class="icon-button" type="button" aria-label="Forward" title="Forward" disabled>→</button>
+          </div>
+        </div>
+
+        <div class="brand-row">
+          <strong>Agent workspace</strong>
+          <button class="icon-button" type="button" aria-label="Search" title="Search">⌕</button>
+        </div>
+
+        <nav class="primary-nav" aria-label="Primary navigation">
+          <button type="button"><span aria-hidden="true">＋</span> New session</button>
+          <button type="button"><span aria-hidden="true">◴</span> Recent work</button>
+          <button type="button" data-show-tools><span aria-hidden="true">⌘</span> Tools</button>
+        </nav>
+
+        <div class="nav-section">
+          <div class="section-label">Conversation reference</div>
+          <button class="state-nav" type="button" data-view-button="working" aria-pressed="true">
+            Working and activity
+          </button>
+          <button class="state-nav" type="button" data-view-button="approval" aria-pressed="false">
+            Approval request
+          </button>
+          <button class="state-nav" type="button" data-view-button="recovery" aria-pressed="false">
+            Stop, errors and queue
+          </button>
+          <button class="state-nav" type="button" data-view-button="tools" aria-pressed="false">
+            Contextual tool workspace
+          </button>
+        </div>
+
+        <div class="sidebar-footer">
+          <button type="button" aria-label="Local reference status">
+            <span class="status-dot success" aria-hidden="true"></span>
+            Local reference
+          </button>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="toolbar">
+          <div class="toolbar-title">
+            <span class="folder-icon" aria-hidden="true">□</span>
+            <h1 id="view-title">Working and activity</h1>
+            <button class="icon-button" type="button" aria-label="Conversation actions" title="Conversation actions">•••</button>
+          </div>
+          <div class="toolbar-actions">
+            <button class="text-button" type="button">Open in⌄</button>
+            <button class="icon-button" type="button" aria-label="Toggle tool workspace" title="Toggle tool workspace" data-toggle-tools>◫</button>
+          </div>
+        </header>
+
+        <div class="thread-scroll" id="thread-scroll">
+          <section class="thread-panel" data-panel="working" aria-labelledby="working-label">
+            <h2 class="sr-only" id="working-label">Working and activity state</h2>
+
+            <article class="turn">
+              <div class="message-row user-row" data-object>
+                <div class="object-actions" data-object-actions aria-label="User message actions">
+                  <button type="button">Copy</button>
+                  <button type="button">Edit</button>
+                </div>
+                <div class="user-message">
+                  梳理消息队列失败后的恢复交互，并给出最小实现。
+                </div>
+              </div>
+
+              <div class="activity-block">
+                <button
+                  class="activity-trigger"
+                  type="button"
+                  aria-expanded="true"
+                  aria-controls="working-details"
+                  data-activity-trigger
+                >
+                  <span class="activity-spinner" aria-hidden="true"></span>
+                  <span>处理中 18 秒</span>
+                  <span class="chevron" aria-hidden="true">⌃</span>
+                </button>
+                <div class="activity-details" id="working-details" data-activity-details>
+                  <div class="activity-event">
+                    <span class="activity-event-icon" aria-hidden="true">↳</span>
+                    <span>已读取队列状态与现有交互</span>
+                  </div>
+                  <div class="subagent-event">
+                    <button class="subagent-pill" type="button">恢复状态审计</button>
+                    <span class="inline-status">已完成</span>
+                  </div>
+                  <div class="activity-event active">
+                    <span class="activity-event-dot" aria-hidden="true"></span>
+                    <span>正在验证最小状态契约</span>
+                  </div>
+
+                  <div class="command-result" data-object>
+                    <div class="command-header">
+                      <button class="command-disclosure" type="button" aria-label="Collapse command output">⌄</button>
+                      <span>已运行命令</span>
+                      <div class="object-actions" data-object-actions>
+                        <button type="button" data-copy-command>Copy</button>
+                      </div>
+                    </div>
+                    <code>npm test -- queue-recovery</code>
+                  </div>
+                </div>
+              </div>
+
+              <div class="assistant-message">
+                <p>已确认：失败项必须停留在原队列位置，后续消息不能越过它发送。</p>
+                <p>我正在把 Retry、Edit、Delete 和 Resume 绑定到同一份队列状态，避免按钮状态与提示文案互相矛盾。</p>
+              </div>
+            </article>
+          </section>
+
+          <section class="thread-panel" data-panel="approval" aria-labelledby="approval-label" hidden>
+            <h2 class="sr-only" id="approval-label">Approval request state</h2>
+
+            <article class="turn">
+              <div class="message-row user-row" data-object>
+                <div class="object-actions" data-object-actions aria-label="User message actions">
+                  <button type="button">Copy</button>
+                  <button type="button">Edit</button>
+                </div>
+                <div class="user-message">
+                  请运行相关测试，但任何扩大权限的动作都先向我确认。
+                </div>
+              </div>
+
+              <div class="assistant-message">
+                <p>实现已准备好。继续验证需要运行下面的本地命令。</p>
+              </div>
+
+              <section class="approval-surface" aria-labelledby="approval-title" data-approval-surface>
+                <div class="approval-type">
+                  <span class="terminal-icon" aria-hidden="true">›_</span>
+                  <span>终端</span>
+                  <span class="approval-status">待批准</span>
+                </div>
+                <div class="approval-content">
+                  <h3 id="approval-title">允许 Agent workspace 运行此命令？</h3>
+                  <p>该命令只读取示例并执行本地类型检查。</p>
+                  <pre><code>npm test -- queue-recovery</code></pre>
+                  <dl class="approval-reason">
+                    <div>
+                      <dt>原因</dt>
+                      <dd>确认状态、滚动和焦点契约可以独立编译。</dd>
+                    </div>
+                    <div>
+                      <dt>作用范围</dt>
+                      <dd>仅本次命令，不修改全局权限。</dd>
+                    </div>
+                  </dl>
+                </div>
+                <div class="approval-actions">
+                  <span class="action-spacer"></span>
+                  <button class="button outline" type="button" data-approval-deny>拒绝</button>
+                  <button class="button primary" type="button" data-approval-allow>允许一次</button>
+                </div>
+              </section>
+            </article>
+          </section>
+
+          <section class="thread-panel" data-panel="recovery" aria-labelledby="recovery-label" hidden>
+            <h2 class="sr-only" id="recovery-label">Stop, errors and queue recovery states</h2>
+
+            <div class="recovery-tabs" role="tablist" aria-label="Recovery reference state">
+              <button type="button" role="tab" aria-selected="false" data-recovery-button="stopped">Stopped</button>
+              <button type="button" role="tab" aria-selected="false" data-recovery-button="batch">Mixed result</button>
+              <button type="button" role="tab" aria-selected="false" data-recovery-button="render">Render error</button>
+              <button type="button" role="tab" aria-selected="true" data-recovery-button="queue">Queue paused</button>
+            </div>
+
+            <article class="turn recovery-turn recovery-panel" data-recovery-panel="stopped" hidden>
+              <div class="message-row user-row" data-object>
+                <div class="object-actions" data-object-actions aria-label="User message actions">
+                  <button type="button">Copy</button>
+                  <button type="button">Edit</button>
+                </div>
+                <div class="user-message">先停一下，保留当前结果和草稿。</div>
+              </div>
+              <button class="stopped-activity" type="button" aria-expanded="false">
+                <span class="stopped-icon" aria-hidden="true">■</span>
+                <span>你在 42 秒后停止了</span>
+                <span class="chevron" aria-hidden="true">⌄</span>
+              </button>
+              <div class="assistant-message compact">
+                <p>已保留当前输出、草稿和恢复位置。</p>
+              </div>
+            </article>
+
+            <article class="turn recovery-turn recovery-panel" data-recovery-panel="batch" hidden>
+              <div class="message-row user-row" data-object>
+                <div class="object-actions" data-object-actions aria-label="User message actions">
+                  <button type="button">Copy</button>
+                  <button type="button">Edit</button>
+                </div>
+                <div class="user-message">汇总这次验证批次的结果。</div>
+              </div>
+              <div class="mixed-result" role="status">
+                <div class="partial-icon" aria-hidden="true">!</div>
+                <div>
+                  <strong>验证批次：2 项通过，1 项失败</strong>
+                  <p><code>queue-recovery.test.ts</code> 未通过；先查看失败对象，再决定是否安全重试。</p>
+                </div>
+                <button class="button outline" type="button" data-review-partial>查看失败项</button>
+              </div>
+            </article>
+
+            <article class="turn recovery-turn recovery-panel" data-recovery-panel="render" hidden>
+              <div class="assistant-message compact">
+                <p>任务结果仍然保留，但下面这一处内容没有成功渲染。</p>
+              </div>
+              <div class="render-error" role="alert">
+                <div>
+                  <strong>此区块无法显示</strong>
+                  <p>重新渲染只重置这个 UI boundary，不会重新执行任务。</p>
+                </div>
+                <button class="button secondary" type="button" data-render-retry>重新渲染此区块</button>
+              </div>
+            </article>
+
+            <article class="turn recovery-turn recovery-panel" data-recovery-panel="queue">
+              <div class="message-row user-row" data-object>
+                <div class="object-actions" data-object-actions aria-label="User message actions">
+                  <button type="button">Copy</button>
+                  <button type="button">Edit</button>
+                </div>
+                <div class="user-message">保留排队消息，不要越过失败项。</div>
+              </div>
+              <div class="queue-region" aria-label="Paused message queue">
+                <div class="queue-header" role="status">
+                  <span><span class="warning-mark" aria-hidden="true">!</span> 队列暂停；先处理失败项</span>
+                </div>
+                <div class="queue-item failed" data-queue-item="failed" data-object>
+                  <button class="drag-handle" type="button" aria-label="Reorder failed queued message" title="Reorder">⋮⋮</button>
+                  <div class="queue-copy">
+                    <strong>这条排队消息未能发送</strong>
+                    <span>补充失败队列项的可访问性测试</span>
+                  </div>
+                  <div class="queue-actions" data-object-actions>
+                    <button type="button" data-queue-retry>Retry</button>
+                    <button type="button" data-queue-edit>Edit</button>
+                    <button type="button" data-queue-delete>Delete</button>
+                  </div>
+                </div>
+                <div class="queue-item" data-queue-item="blocked" data-object>
+                  <button class="drag-handle" type="button" aria-label="Reorder queued message" title="Reorder">⋮⋮</button>
+                  <div class="queue-copy">
+                    <span>整理最终验证结果</span>
+                    <small>等待失败项处理</small>
+                  </div>
+                  <div class="queue-actions" data-object-actions>
+                    <button type="button">Edit</button>
+                    <button type="button">Delete</button>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </section>
+        </div>
+
+        <section class="tool-workspace-reference" data-panel="tools" aria-labelledby="tool-workspace-label" hidden>
+          <h2 class="sr-only" id="tool-workspace-label">Contextual tool workspace</h2>
+
+          <aside class="context-preview" aria-label="Preserved conversation context">
+            <header class="context-preview-header">
+              <div>
+                <strong>Queue recovery</strong>
+                <span>Current session</span>
+              </div>
+              <span class="context-retained">Context retained</span>
+            </header>
+
+            <div class="context-preview-scroll">
+              <div class="context-user-message">Keep the failed item in place and preserve the draft.</div>
+              <div class="context-activity-row">
+                <span class="context-activity-dot" aria-hidden="true"></span>
+                <span>Queue state inspected</span>
+              </div>
+              <div class="context-assistant-message">
+                The task remains visible while the supporting workspace is open.
+              </div>
+            </div>
+
+            <div class="context-composer-preview" role="group" aria-label="Preserved composer">
+              <span>Draft preserved</span>
+              <button type="button" aria-label="Send draft" title="Send draft">↑</button>
+            </div>
+          </aside>
+
+          <section class="contextual-tool-pane" aria-label="Supporting tools">
+            <div class="tool-mode" data-tool-panel="launcher">
+              <div class="tool-launcher-list" aria-label="Available tools">
+                <button class="tool-launcher-button" type="button">
+                  <span class="tool-icon" aria-hidden="true">✓</span>
+                  <span>Review</span>
+                  <kbd>⇧R</kbd>
+                </button>
+                <button class="tool-launcher-button" type="button">
+                  <span class="tool-icon terminal-mark" aria-hidden="true">›_</span>
+                  <span>Terminal</span>
+                  <kbd>⌘J</kbd>
+                </button>
+                <button class="tool-launcher-button" type="button">
+                  <span class="tool-icon" aria-hidden="true">◎</span>
+                  <span>Browser</span>
+                  <kbd>⌘B</kbd>
+                </button>
+                <button class="tool-launcher-button" type="button" data-tool-open="files">
+                  <span class="tool-icon" aria-hidden="true">□</span>
+                  <span>Files</span>
+                  <kbd>⌘P</kbd>
+                </button>
+                <button class="tool-launcher-button" type="button">
+                  <span class="tool-icon" aria-hidden="true">◌</span>
+                  <span>Side chat</span>
+                  <kbd>⌥⌘S</kbd>
+                </button>
+              </div>
+            </div>
+
+            <div class="tool-mode file-tool-view" data-tool-panel="files" hidden>
+              <div class="file-tab-strip" role="tablist" aria-label="Open tool tabs">
+                <div class="file-tab-shell">
+                  <button type="button" role="tab" aria-selected="true" data-tool-initial-focus>Open file</button>
+                  <button class="file-tab-close" type="button" aria-label="Close file tab" title="Close file tab" data-tool-open="launcher">×</button>
+                </div>
+                <button class="file-tab-add" type="button" aria-label="Open another tool tab" title="Open another tool tab">＋</button>
+              </div>
+
+              <div class="file-pathbar">
+                <span>/workspace</span>
+                <button class="icon-button" type="button" aria-label="Toggle file tree" title="Toggle file tree">□</button>
+              </div>
+
+              <div class="file-browser-layout">
+                <main class="file-canvas">
+                  <span class="file-empty-icon" aria-hidden="true">□</span>
+                  <h3>Select a file</h3>
+                  <p>Choose from the workspace tree</p>
+                </main>
+
+                <aside class="file-tree-pane" aria-label="Workspace files">
+                  <label class="file-filter">
+                    <span aria-hidden="true">⌕</span>
+                    <input type="search" aria-label="Filter files" placeholder="Filter files..." />
+                  </label>
+                  <div class="file-tree" role="tree" aria-label="Workspace tree">
+                    <button type="button" role="treeitem" aria-expanded="true" aria-level="1"><span>⌄</span> src</button>
+                    <button type="button" role="treeitem" aria-level="2" class="tree-depth-2"><span>·</span> app.tsx</button>
+                    <button type="button" role="treeitem" aria-level="2" class="tree-depth-2"><span>·</span> queue-state.ts</button>
+                    <button type="button" role="treeitem" aria-expanded="false" aria-level="1"><span>›</span> tests</button>
+                    <button type="button" role="treeitem" aria-expanded="false" aria-level="1"><span>›</span> docs</button>
+                    <button type="button" role="treeitem" aria-level="1"><span>·</span> package.json</button>
+                    <button type="button" role="treeitem" aria-level="1"><span>·</span> README.md</button>
+                  </div>
+                </aside>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <footer class="composer-footer">
+          <div class="composer-status" id="composer-status" role="status" aria-live="polite"></div>
+          <div class="composer" data-object>
+            <label class="sr-only" for="composer-input">Message</label>
+            <textarea id="composer-input" rows="1" placeholder="补充要求"></textarea>
+            <div class="composer-tools">
+              <div class="composer-left">
+                <button class="composer-icon" type="button" aria-label="Add files and more" title="Add files and more">＋</button>
+                <button class="permission-button" type="button">Ask for approval⌄</button>
+              </div>
+              <button class="composer-main stop" type="button" data-composer-action="working" aria-label="Stop" title="Stop">■</button>
+              <button class="composer-main disabled" type="button" data-composer-action="approval" aria-label="Send unavailable while approval is pending" title="Approval pending" disabled>↑</button>
+              <button class="composer-main resume" type="button" data-composer-action="recovery-stopped" aria-label="Resume" title="Resume">▶</button>
+              <button class="composer-main disabled" type="button" data-composer-action="recovery-blocked" aria-label="Send unavailable while recovery action is pending" title="Resolve the visible item" disabled>↑</button>
+            </div>
+          </div>
+        </footer>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
