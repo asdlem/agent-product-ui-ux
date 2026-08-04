@@ -1,6 +1,6 @@
 {
   "name": "agent-product-ui-ux-governance",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Validation tooling for the agent-product-ui-ux skill",
   "scripts": {

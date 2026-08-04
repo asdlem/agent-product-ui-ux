@@ -1,4 +1,4 @@
-<!-- Source: README.md SHA-256: ef74e8ae94dee7f409056531504d486a85201c4868eea431e3b3160aac9fadaf -->
+<!-- Source: README.md SHA-256: f734dedb0292422afdf23bb25e4e27b6598eb07b299f078a183ec702db83a431 -->
 
 # Agent 产品 UI/UX Skill
 
@@ -16,8 +16,9 @@
 
 ```bash
 git clone https://github.com/asdlem/agent-product-ui-ux.git
-mkdir -p "$CODEX_HOME/skills"
-cp -R agent-product-ui-ux/skills/agent-product-ui-ux "$CODEX_HOME/skills/agent-product-ui-ux"
+CODEX_SKILLS_ROOT="${CODEX_HOME:-$HOME/.codex}/skills"
+mkdir -p "$CODEX_SKILLS_ROOT"
+cp -R agent-product-ui-ux/skills/agent-product-ui-ux "$CODEX_SKILLS_ROOT/agent-product-ui-ux"
 ```
 
 若未设置 `CODEX_HOME`，Codex 通常使用 `~/.codex`。

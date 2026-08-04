@@ -2,6 +2,12 @@
 
 All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project uses [Semantic Versioning](https://semver.org/).
 
+## [1.0.1] - 2026-08-04
+
+### Fixed
+
+- Make the Codex installation command fall back to `~/.codex` when `CODEX_HOME` is unset.
+
 ## [1.0.0] - 2026-08-04
 
 ### Added
@@ -13,3 +19,4 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 - Automated structure, privacy, asset, translation, installation, and evaluation-fixture validation.
 
 [1.0.0]: https://github.com/asdlem/agent-product-ui-ux/releases/tag/v1.0.0
+[1.0.1]: https://github.com/asdlem/agent-product-ui-ux/releases/tag/v1.0.1

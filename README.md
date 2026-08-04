@@ -14,8 +14,9 @@ Choose one installation method. Do not install the same skill into multiple disc
 
 ```bash
 git clone https://github.com/asdlem/agent-product-ui-ux.git
-mkdir -p "$CODEX_HOME/skills"
-cp -R agent-product-ui-ux/skills/agent-product-ui-ux "$CODEX_HOME/skills/agent-product-ui-ux"
+CODEX_SKILLS_ROOT="${CODEX_HOME:-$HOME/.codex}/skills"
+mkdir -p "$CODEX_SKILLS_ROOT"
+cp -R agent-product-ui-ux/skills/agent-product-ui-ux "$CODEX_SKILLS_ROOT/agent-product-ui-ux"
 ```
 
 If `CODEX_HOME` is unset, Codex normally uses `~/.codex`.
