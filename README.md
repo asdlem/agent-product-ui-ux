@@ -8,29 +8,26 @@ The repository contains one canonical executable skill in English. Human-facing 
 
 ## Install
 
-Choose one installation method. Do not install the same skill into multiple discovered roots.
-
-### Codex
+Install through the open Skills CLI:
 
 ```bash
-git clone https://github.com/asdlem/agent-product-ui-ux.git
-CODEX_SKILLS_ROOT="${CODEX_HOME:-$HOME/.codex}/skills"
-mkdir -p "$CODEX_SKILLS_ROOT"
-cp -R agent-product-ui-ux/skills/agent-product-ui-ux "$CODEX_SKILLS_ROOT/agent-product-ui-ux"
+npx skills add asdlem/agent-product-ui-ux
 ```
 
-If `CODEX_HOME` is unset, Codex normally uses `~/.codex`.
-
-### Repository-local agents
-
-For tools that discover the open Agent Skills layout from `.agents/skills/`:
+For a non-interactive global installation of this skill:
 
 ```bash
-mkdir -p .agents/skills
-cp -R /path/to/agent-product-ui-ux/skills/agent-product-ui-ux .agents/skills/agent-product-ui-ux
+npx skills add asdlem/agent-product-ui-ux --skill agent-product-ui-ux -g -y
 ```
 
-Restart or refresh the host after installation, then invoke `$agent-product-ui-ux` explicitly or let the model use it for matching agent-product frontend tasks.
+Inspect the repository without installing, or update an existing global installation:
+
+```bash
+npx skills add asdlem/agent-product-ui-ux --list
+npx skills update agent-product-ui-ux -g -y
+```
+
+Do not also copy the skill manually into another root discovered by the same host. Restart or refresh the host after installation, then invoke `$agent-product-ui-ux` explicitly or let the model use it for matching agent-product frontend tasks.
 
 ## Contents
 
@@ -44,14 +41,14 @@ The skill transfers state, layout, scrolling, focus, accessibility, and recovery
 
 ## Development
 
-Requirements: Node.js 20 or later and npm.
+Requirements: Node.js 22.20.0 or later and npm, matching the pinned Skills CLI runtime.
 
 ```bash
 npm ci
 npm test
 ```
 
-Validation checks metadata, links and anchors, public-data hygiene, version consistency, TypeScript examples, JavaScript syntax, screenshot dimensions, evaluation fixtures, translation freshness, and a clean installation smoke test.
+Validation checks metadata, links and anchors, public-data hygiene, version consistency, TypeScript examples, JavaScript syntax, screenshot dimensions, evaluation fixtures, translation freshness, and a real Skills CLI installation whose output must match the canonical skill tree.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for change evidence and [CHANGELOG.md](CHANGELOG.md) for releases.
 

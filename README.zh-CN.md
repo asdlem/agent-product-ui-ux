@@ -1,4 +1,4 @@
-<!-- Source: README.md SHA-256: f734dedb0292422afdf23bb25e4e27b6598eb07b299f078a183ec702db83a431 -->
+<!-- Source: README.md SHA-256: 8a3f18c7f1511c006d127f455f7110a69a19f85f56ee9909f366f808f9d646bd -->
 
 # Agent 产品 UI/UX Skill
 
@@ -10,29 +10,26 @@
 
 ## 安装
 
-选择一种安装方式，不要把同一个 Skill 同时安装到宿主能够发现的多个目录。
-
-### Codex
+通过开放的 Skills CLI 安装：
 
 ```bash
-git clone https://github.com/asdlem/agent-product-ui-ux.git
-CODEX_SKILLS_ROOT="${CODEX_HOME:-$HOME/.codex}/skills"
-mkdir -p "$CODEX_SKILLS_ROOT"
-cp -R agent-product-ui-ux/skills/agent-product-ui-ux "$CODEX_SKILLS_ROOT/agent-product-ui-ux"
+npx skills add asdlem/agent-product-ui-ux
 ```
 
-若未设置 `CODEX_HOME`，Codex 通常使用 `~/.codex`。
-
-### 仓库局部 Agent
-
-对于从 `.agents/skills/` 发现开放 Agent Skills 目录结构的工具：
+非交互地全局安装这个 Skill：
 
 ```bash
-mkdir -p .agents/skills
-cp -R /path/to/agent-product-ui-ux/skills/agent-product-ui-ux .agents/skills/agent-product-ui-ux
+npx skills add asdlem/agent-product-ui-ux --skill agent-product-ui-ux -g -y
 ```
 
-安装后重启或刷新宿主，然后显式调用 `$agent-product-ui-ux`，或让模型在匹配的 Agent 产品前端任务中自动使用。
+只查看仓库中可用的 Skill，或更新已有的全局安装：
+
+```bash
+npx skills add asdlem/agent-product-ui-ux --list
+npx skills update agent-product-ui-ux -g -y
+```
+
+不要再把同一个 Skill 手工复制到当前宿主可发现的另一个目录。安装后重启或刷新宿主，然后显式调用 `$agent-product-ui-ux`，或让模型在匹配的 Agent 产品前端任务中自动使用。
 
 ## 内容
 
@@ -46,14 +43,14 @@ Skill 迁移的是状态、布局、滚动、焦点、可访问性和恢复契�
 
 ## 开发
 
-要求 Node.js 20 或更高版本以及 npm。
+要求 Node.js 22.20.0 或更高版本以及 npm，与固定版本的 Skills CLI 运行时一致。
 
 ```bash
 npm ci
 npm test
 ```
 
-校验覆盖 metadata、链接和锚点、公开数据卫生、版本一致性、TypeScript 示例、JavaScript 语法、截图尺寸、eval fixtures、翻译新鲜度以及干净安装冒烟验证。
+校验覆盖 metadata、链接和锚点、公开数据卫生、版本一致性、TypeScript 示例、JavaScript 语法、截图尺寸、eval fixtures、翻译新鲜度，以及 Skills CLI 真实安装结果与 canonical Skill 目录的逐文件一致性。
 
 改动要求见 [CONTRIBUTING.md](CONTRIBUTING.md)，版本记录见 [CHANGELOG.md](CHANGELOG.md)。
 

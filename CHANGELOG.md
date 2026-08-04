@@ -2,6 +2,13 @@
 
 All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project uses [Semantic Versioning](https://semver.org/).
 
+## [1.1.0] - 2026-08-04
+
+### Added
+
+- Make `npx skills add asdlem/agent-product-ui-ux` the canonical installation path.
+- Validate discovery and a complete installation through the pinned Skills CLI.
+
 ## [1.0.1] - 2026-08-04
 
 ### Fixed
@@ -20,3 +27,4 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 [1.0.0]: https://github.com/asdlem/agent-product-ui-ux/releases/tag/v1.0.0
 [1.0.1]: https://github.com/asdlem/agent-product-ui-ux/releases/tag/v1.0.1
+[1.1.0]: https://github.com/asdlem/agent-product-ui-ux/releases/tag/v1.1.0

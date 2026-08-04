@@ -138,11 +138,25 @@ const jsCheck = spawnSync(process.execPath, ["--check", javascript], { encoding:
 check(jsCheck.status === 0, `app.js syntax failed\n${jsCheck.stderr}`);
 
 const installRoot = await mkdtemp(join(tmpdir(), "agent-product-ui-ux-install-"));
-const installDir = join(installRoot, basename(skillDir));
-const copy = spawnSync("cp", ["-R", skillDir, installDir], { encoding: "utf8" });
-check(copy.status === 0, `installation smoke copy failed: ${copy.stderr}`);
+const gitInit = spawnSync("git", ["init", "-b", "main"], { cwd: installRoot, encoding: "utf8" });
+check(gitInit.status === 0, `Skills CLI fixture git init failed: ${gitInit.stderr}`);
+const skillsCli = spawnSync(
+  join(root, "node_modules", ".bin", "skills"),
+  ["add", root, "--skill", "agent-product-ui-ux", "--agent", "codex", "-y", "--copy"],
+  { cwd: installRoot, encoding: "utf8" }
+);
+check(skillsCli.status === 0, `Skills CLI installation failed:\n${skillsCli.stdout}${skillsCli.stderr}`);
+const installDir = join(installRoot, ".agents", "skills", basename(skillDir));
 const installedSkill = await readFile(join(installDir, "SKILL.md"), "utf8");
 check(frontmatter(installedSkill, "installed SKILL.md").name === "agent-product-ui-ux", "installed skill metadata is invalid");
+const canonicalInstalledFiles = (await filesUnder(skillDir)).map((path) => relative(skillDir, path)).sort();
+const actualInstalledFiles = (await filesUnder(installDir)).map((path) => relative(installDir, path)).sort();
+check(JSON.stringify(actualInstalledFiles) === JSON.stringify(canonicalInstalledFiles), "Skills CLI installation file tree differs from the canonical skill");
+for (const file of canonicalInstalledFiles) {
+  const canonical = await readFile(join(skillDir, file));
+  const installed = await readFile(join(installDir, file));
+  check(canonical.equals(installed), `Skills CLI installation changed ${file}`);
+}
 
 if (failures.length) {
   console.error(`Validation failed with ${failures.length} issue(s):`);
